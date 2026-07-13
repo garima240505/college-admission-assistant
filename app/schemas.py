@@ -8,3 +8,13 @@ class StudentCreate(BaseModel):
     phone: str
     jee_percentile: float
     branch_preference: str
+
+
+class StudentLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
