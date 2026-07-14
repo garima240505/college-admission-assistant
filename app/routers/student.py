@@ -1,27 +1,23 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from app.schemas import StudentCreate, StudentLogin
+from app import models
+from app.dependencies import get_current_student, get_db
+from app.schemas import (
+    StudentCreate,
+    StudentLogin,
+    StudentProfileUpdate
+)
 from app.services.student_service import (
     register_student,
-    login_student
+    login_student,
+    update_profile
 )
-from app.database import SessionLocal
-from app.dependencies import get_current_student
-from app import models
 
 router = APIRouter(
     prefix="/students",
     tags=["Students"]
 )
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @router.post("/register")
@@ -41,14 +37,16 @@ def login(
 
 
 @router.get("/me")
-def get_profile(
+def get_my_profile(
     current_student: models.Student = Depends(get_current_student)
 ):
-    return {
-        "id": current_student.id,
-        "full_name": current_student.full_name,
-        "email": current_student.email,
-        "phone": current_student.phone,
-        "jee_percentile": current_student.jee_percentile,
-        "branch_preference": current_student.branch_preference
-    }
+    return current_student
+
+
+@router.put("/profile")
+def update_student_profile(
+    student: StudentProfileUpdate,
+    current_student: models.Student = Depends(get_current_student),
+    db: Session = Depends(get_db)
+):
+    return update_profile(student, current_student, db)

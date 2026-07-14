@@ -18,3 +18,9 @@ class Student(Base):
     jee_percentile = Column(Float, nullable=False)
 
     branch_preference = Column(String(100), nullable=False)
+
+    category = Column(String(50), nullable=True)
+
+    state = Column(String(50), nullable=True)
+
+    twelfth_percentage = Column(Float, nullable=True)

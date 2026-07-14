@@ -71,3 +71,27 @@ def login_student(student: StudentLogin, db: Session):
         "access_token": access_token,
         "token_type": "bearer"
     }
+
+
+def update_profile(student_data, current_student, db: Session):
+
+    student = db.query(models.Student).filter(
+        models.Student.id == current_student.id
+    ).first()
+
+    if student is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Student not found"
+        )
+
+    student.category = student_data.category
+    student.state = student_data.state
+    student.twelfth_percentage = student_data.twelfth_percentage
+
+    db.commit()
+    db.refresh(student)
+
+    return {
+        "message": "Profile updated successfully"
+    }

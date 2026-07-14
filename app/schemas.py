@@ -15,6 +15,15 @@ class StudentLogin(BaseModel):
     password: str
 
 
-class Token(BaseModel):
-    access_token: str
-    token_type: str
+class StudentProfileUpdate(BaseModel):
+    category: str
+    state: str
+    twelfth_percentage: float
+
+
+class ChatRequest(BaseModel):
+    question: str
+
+
+class ChatResponse(BaseModel):
+    answer: str
