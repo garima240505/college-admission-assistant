@@ -1,0 +1,161 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    background:#edf2f7;
+}
+
+.login-page,
+.register-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+}
+
+.login-card,
+.register-card{
+    width:420px;
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.login-card h1,
+.register-card h1{
+    text-align:center;
+    font-size:55px;
+}
+
+.login-card h2,
+.register-card h2{
+    text-align:center;
+    margin-top:10px;
+    color:#1e3a8a;
+}
+
+.login-card p,
+.register-card p{
+    text-align:center;
+    color:gray;
+    margin-bottom:30px;
+}
+
+.login-card form,
+.register-card form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.login-card input,
+.register-card input{
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #d1d5db;
+    font-size:16px;
+    transition:.3s;
+}
+
+.login-card input:focus,
+.register-card input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.2);
+}
+
+.login-card button,
+.register-card button{
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-card button:hover,
+.register-card button:hover{
+    background:#1d4ed8;
+}
+
+.login-card a,
+.register-card a{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:600;
+}
+
+.app{
+    width:95%;
+    max-width:1000px;
+    margin:30px auto;
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.chat-window{
+    height:500px;
+    overflow-y:auto;
+    background:#f8fafc;
+    border-radius:15px;
+    padding:20px;
+    margin:20px 0;
+}
+
+.message{
+    max-width:70%;
+    padding:14px 18px;
+    border-radius:18px;
+    margin-bottom:15px;
+    line-height:1.6;
+}
+
+.user{
+    background:#2563eb;
+    color:white;
+    margin-left:auto;
+}
+
+.bot{
+    background:white;
+    border:1px solid #dbe4ee;
+}
+
+.input-container{
+    display:flex;
+    gap:10px;
+}
+
+.input-container input{
+    flex:1;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid #d1d5db;
+}
+
+.input-container button{
+    width:120px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+
+.input-container button:hover{
+    background:#1d4ed8;
+}

@@ -1,0 +1,13 @@
+
+.vscode/
+
+# JetBrains
+.idea/
+
+# macOS
+.DS_Store
+venv/
+__pycache__/
+*.pyc
+.env
+chroma_db/
