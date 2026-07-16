@@ -8,7 +8,7 @@ export async function sendMessage(question) {
   const response = await axios.post(
     API_URL,
     {
-      question: question,
+      question,
     },
     {
       headers: {
