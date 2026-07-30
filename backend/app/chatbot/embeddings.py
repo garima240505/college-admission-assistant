@@ -1,14 +1,14 @@
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_ollama import OllamaEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 
 from app.chatbot.loader import load_documents
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
 def create_embeddings():
     # Load PDF
     documents = load_documents()
 
-    # Split into chunks
+    # Split documents
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200
@@ -17,8 +17,8 @@ def create_embeddings():
     chunks = splitter.split_documents(documents)
 
     # Create embedding model
-    embeddings = OllamaEmbeddings(
-        model="nomic-embed-text"
+    embeddings = HuggingFaceEmbeddings(
+        model_name="BAAI/bge-small-en-v1.5"
     )
 
     return chunks, embeddings

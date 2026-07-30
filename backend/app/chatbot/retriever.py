@@ -1,11 +1,10 @@
 from langchain_chroma import Chroma
-from langchain_ollama import OllamaEmbeddings
+
+from app.chatbot.embeddings import create_embeddings
 
 
 def get_retriever():
-    embeddings = OllamaEmbeddings(
-        model="nomic-embed-text"
-    )
+    _, embeddings = create_embeddings()
 
     vectorstore = Chroma(
         persist_directory="chroma_db",
