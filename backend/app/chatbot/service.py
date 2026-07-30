@@ -1,32 +1,34 @@
+from langchain_groq import ChatGroq
+
+from app.config import settings
+from app.chatbot.retriever import get_retriever
 from app.chatbot.chain import create_chain
 
 
+# Initialize Groq LLM
+llm = ChatGroq(
+    model="llama-3.1-8b-instant",
+    temperature=0,
+    api_key=settings.GROQ_API_KEY
+)
+
+
+retriever = get_retriever()
+
+
+qa_chain = create_chain(
+    llm=llm,
+    retriever=retriever
+)
+
+
 def get_chat_response(question: str):
-    llm, retriever = create_chain()
 
-    # Retrieve relevant documents
-    docs = retriever.invoke(question)
+    try:
+        response = qa_chain.invoke(question)
 
-    # Combine retrieved context
-    context = "\n\n".join(doc.page_content for doc in docs)
+        return response.content
 
-    prompt = f"""
-You are an AI Admission Assistant.
-
-Answer ONLY using the information provided in the context below.
-
-If the answer is not present in the context, reply:
-"I couldn't find that information in the admission documents."
-
-Context:
-{context}
-
-Question:
-{question}
-
-Answer:
-"""
-
-    response = llm.invoke(prompt)
-
-    return response.content
+    except Exception as e:
+        print("CHATBOT ERROR:", e)
+        return "Sorry, I am unable to process your request right now."
