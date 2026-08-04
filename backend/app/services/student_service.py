@@ -18,6 +18,8 @@ def register_student(student: StudentCreate, db: Session):
             status_code=400,
             detail="Email already registered"
         )
+        print("Password repr:", repr(student.password))
+print("Password length:", len(student.password))
 
     hashed_password = hash_password(student.password)
 
