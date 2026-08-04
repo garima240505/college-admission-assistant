@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://127.0.0.1:8000/students";
+const API = "https://college-admission-assistant.onrender.com/students";
 
 export async function registerStudent(studentData) {
   const response = await axios.post(
