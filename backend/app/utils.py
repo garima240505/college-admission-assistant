@@ -1,23 +1,9 @@
-from passlib.context import CryptContext
-import traceback
+from werkzeug.security import generate_password_hash, check_password_hash
 
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto"
-)
 
 def hash_password(password: str):
-    try:
-        print(f"Password received: {repr(password)}")
-        print(f"Password length: {len(password)}")
-        return pwd_context.hash(password)
-    except Exception as e:
-        print("ERROR INSIDE hash_password()")
-        traceback.print_exc()
-        raise
+    return generate_password_hash(password)
+
 
 def verify_password(plain_password: str, hashed_password: str):
-    return pwd_context.verify(
-        plain_password,
-        hashed_password
-    )
+    return check_password_hash(hashed_password, plain_password)
